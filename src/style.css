@@ -92,12 +92,9 @@ button {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: center; 
     justify-content: center;
-    
-    
-    
-   
+ 
 }
 
 .post{
@@ -109,4 +106,38 @@ button {
     margin: 10px;
     padding: 10px;
 
+}
+.container-receipt{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center; 
+    justify-content: center;
+}
+
+span{
+    color: red;
+}
+.methods-drinks{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.drinks > .letters-drinks 
+{
+    font-size: 20px;
+    max-width: 80%;
+    
+    
+}
+
+.methods > .letters-methods 
+{
+    font-size: 20px;
+    max-width: 80%;
+    
+
+    
 }
