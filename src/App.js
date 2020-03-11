@@ -1,19 +1,34 @@
 import React from 'react';
 import Init from './Page/Init';
+import { Provider } from "react-redux";
+import { Store } from './Redux/store';
+import {BrowserRouter,Route} from 'react-router-dom'
 
-
-class App extends React.Component
+const  App = _=>
 {
-  render()
-  {
+    
+      return(
+      
+           
+              <Provider store={Store}>
+                 <BrowserRouter basename={window.location.pathname || ''}>
+                 <Route exact path="/" component={Init} />
+                 </BrowserRouter>
 
-    return(
+              </Provider>
+        
+      );
+    
+ }
+  
+    
+   
+export default App;
 
-      <Init></Init>
-    );
-  }
     
   
-}
+    
+  
 
- export default App;
+
+ 

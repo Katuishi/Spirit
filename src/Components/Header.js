@@ -1,29 +1,42 @@
-import React from 'react';
+import React ,{useRef}from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import {connect} from 'react-redux';
+import { ActionReducer } from "../Redux/ActionReducer";
 
-class Header extends React.Component
+const Header  = ({searchDrink}) =>
 {
-    render()
-    {
-
-        return(
-            <div className='nav'>
-
+    const drink = useRef("")
+  
+    return(
+        <div className='nav'>
             <div className="banner">
-                <div  className="logo">
+                <div  className="logo font-title">
                     <i className="fa fa-user"></i>
                     <p className="title">SPIRIT</p>
                 </div>
-                
-                <form className="search" action="/" method="post">
-                    <input type="text" placeholder="text"></input>
-                    <button className="btn" type="submit">Search</button>
-                </form>
-            
+                <div className="search">
+                    <input type="text" ref={drink} className="drink" placeholder="Search"></input>
+                    <button className="btn"  onClick={()=> searchDrink(drink.current) }><FontAwesomeIcon icon={faSearch}/></button>
+                </div>
+                    
             </div>
         </div>
-        );
-    }
+    );
+    
     
 } 
 
-export default Header;
+
+const mapsDispatchToProps = (dispatch) =>({
+    searchDrink(drink){
+        dispatch({
+            type:ActionReducer.SEARCH_DRINK,
+            data:drink
+        })
+    }
+})
+
+
+
+export default connect(null,mapsDispatchToProps)(Header) ;
