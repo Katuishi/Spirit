@@ -1,25 +1,67 @@
 import React from 'react';
+import axios from 'axios';
 class Receipt extends React.Component
 {
+    state = {
+        receipt:{
+            drinks:[],
+            img:[],
+            methods:[]
+            
+
+        },
+       
+    }
+
+    componentDidMount()
+    {
+        
+        axios.get('http://127.0.0.1:5000/api/receipt')
+        .then(result =>  result.data
+            
+        ).then(data => {
+            this.setState({receipt:data});
+         
+        })            
+        
+    
+        
+    }
+
+
     render()
     {
+        
         return(
             <div className="container-receipt">
                 <div>
-                    <img src={this.props.img} aria-hidden width="200" height="200" alt=""/>
+                    <img src={this.state.receipt.img} aria-hidden width="200" height="200" alt=""/>
                 </div>
                 <div className="methods-drinks">
                     <div className="drinks">
-                        <p className="letters-drinks"><span>1</span> Pica Pollo max-width: 100px;max-width: 100px;max-width: 100px;max-width: 100px;max-width: 100px;max-width: 100px;</p>
-                        <p className="letters-drinks"><span>2</span> Pica Pollo </p>
-                        <p className="letters-drinks"><span>3</span> Pica Pollo </p>
-                        <p className="letters-drinks"><span>4</span> Pica Pollo </p>
+                        {
+                            
+
+                            this.state.receipt.drinks.map((x,index)=>
+                            {
+                                return(
+                                <p ><span>{index+1}-</span>{x.drink}</p>
+                                )
+                            }
+                            )
+                            
+                        }
                     </div>
                     <div className="methods">
-                        <p className="letters-methods"><span>1</span> Pica Pollo </p>
-                        <p className="letters-methods"><span>2</span> Pica Pollo </p>
-                        <p className="letters-methods"><span>3</span> Pica Pollo </p>
-                        <p className="letters-methods"><span>4</span> Pica Pollo </p>
+                    {
+                            this.state.receipt.methods.map((data,index)=>
+                            {
+                                return(
+                                <p className=".letters-methods "><span>{index+1}-</span>{data.method}</p>
+                                )
+                            }
+                            )
+                        }
                     </div>
                 </div>
             </div>

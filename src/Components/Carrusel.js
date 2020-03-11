@@ -1,37 +1,64 @@
-import React from 'react';
+
+import React,{useEffect} from 'react';
 import { Carousel} from 'react-responsive-carousel'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
-class Carrusel extends React.Component
-{
+import { connect } from "react-redux";
+import { fetchImgs } from '../Redux/FetchAction'
 
+
+const Carrusel = ({imgs,fetchImgs}) =>{
+
+   useEffect(() => {
+       fetchImgs()
+   }, [])
     
-    render()
-    {
-        return (
-            <Carousel useKeyboardArrows={false}
-                        showThumbs={false} showStatus={false} 
+    return imgs.loading ? (
+        <div>...loading</div>
+    )
+    :(
+
+       <Carousel useKeyboardArrows={false}                       
+                        showThumbs={false} 
+                        showStatus={false} 
                         autoPlay={true} 
                         showArrows={false} 
                         showIndicators={true}
                         infiniteLoop={true}
-                        interval={1000}>
-                 <div>
-                    <img src="https://statics-cuidateplus.marca.com/sites/default/files/styles/natural/public/ibuprofeno-y-alcohol.jpg?itok=96LT3j-9" aria-hidden alt="description of image"/>
-                    <p className="legend">Legend 1</p>
-                </div>
-                <div>
-                    <img src="https://media-verticommnetwork1.netdna-ssl.com/wines/brugal-anejo-437577.png" aria-hidden alt="description of image"/>
-                    <p className="legend">Legend 1</p>
-                </div>
-                <div>
-                    <img src="https://media-verticommnetwork1.netdna-ssl.com/wines/brugal-anejo-437577.png" aria-hidden alt="description of image"/>
-                    <p className="legend">Legend 1</p>
+                        interval={9000}
+                        stopOnHover={true} >
 
-                </div>
-                
-            </Carousel>
-        );
-    }
+                        {
+                            imgs.data.map((x,index)=> 
+                            { 
+                                return (
+                                    <div key={index}>
+                                    <img alt={x.alt} aria-hidden src={x.img} />
+                                    <div className="legend">{x.alt} </div>
+                                    </div>
+                                )
+                            })
+                        }
+                          
+        </Carousel>
+          
+        
+        
+    )
 
+   
 }
-export default Carrusel;
+
+
+
+   
+
+const mapsStateToProps = state=>({
+    imgs:state.img
+})
+
+const mapsDispatchToProps = dispatch =>({
+    fetchImgs:()=>dispatch(fetchImgs())
+})
+
+ 
+export default connect(mapsStateToProps,mapsDispatchToProps)(Carrusel);

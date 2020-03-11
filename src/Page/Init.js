@@ -1,44 +1,62 @@
-import React from 'react';
-// import {Link,BrowserRouter} from 'react-router-dom';
-// import ReactDOM from 'react-dom';
-import Footer from "../../src/Components/Footer";
+import React, { useEffect } from 'react';
 import Header from "../../src/Components/Header";
-// import Carrusel from "../../src/Components/Carrusel";
-import Post from "../../src/Components/Post"
-import Receipt from '../../src/Components/Receipt';
+import {Footer} from "../../src/Components/Footer";
+import {Post} from "../../src/Components/Post"
+import { connect} from 'react-redux';
+import { withRouter } from 'react-router-dom'
+import { fetchPosts} from '../Redux/FetchAction'
+import  Carrusel from '../../src/Components/Carrusel'
+import  {CSSTransition} from 'react-transition-group'
 
 
-class Init extends React.Component
+
+
+const Init = ({posts,fetchPosts}) =>
 {
+   
+     useEffect(()=>{
+         fetchPosts();
+    },[])
     
-    render()
-    {
+   
         return(
            <div>
-               <Header></Header>
-               {/* <Carrusel></Carrusel> */}
+               <Header/>
+               {/* <Carrusel/> */}
                <div className="container-post">
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    {/* <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post>
-                    <Post desc= "pica pollo" img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg" ></Post> */}
-               </div> 
+                    {  posts.loading ? (<div>...loading </div>):
+                        (
+                            posts.data.map(x=>{
+                                return(
+                                    <CSSTransition 
+                                        transitionName="example">
+                                        <Post key={x.id }data={x}/>
 
-               <Receipt img="https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg"></Receipt>
-               <Footer></Footer>
-               
+                                    </CSSTransition>
+                                )
+                            })
+                        )
+                    
+                    }
+                    
+                </div> 
+
+               <Footer/>
            </div>
            
-        );
-    }
- 
+        ); 
 }
-export default Init;
+
+const mapStateToProps = state =>({
+    posts:state.post
+})
+const mapDispatchToProps = dispatch =>({
+    fetchPosts(){
+        dispatch(fetchPosts())
+    }
+})
+
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Init))
+
+
+

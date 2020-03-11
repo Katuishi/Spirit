@@ -1,24 +1,22 @@
-import React , {Component} from 'react';
+import React  from 'react';
 
-class Post extends Component
+export const Post = (data) => 
 {
 
-    render(){
+    
         return(
-            <section>
+            <section >
                 <div className="post">
                     <div className="post-upper">
-                         <img src={this.props.img} aria-hidden width="200" height="200" alt=""/>
-
+                         <img src={data.data.img} aria-hidden width="200" height="200" alt=""/>
                     </div>
                     <div className="post-lower">
 
-                        <p>{this.props.desc}</p>
+                        <p>{data.data.title}</p>
 
-                    </div>git 
+                    </div>
                 </div>
             </section>
         )
-    }
+    
 }
- export default  Post;
