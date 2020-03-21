@@ -2,7 +2,8 @@ import React from 'react';
 import Init from './Page/Init';
 import { Provider } from "react-redux";
 import { Store } from './Redux/store';
-import {BrowserRouter,Route} from 'react-router-dom'
+import {BrowserRouter,Route,Switch } from 'react-router-dom'
+import Receipt from './Page/Receipt';
 
 const  App = _=>
 {
@@ -12,7 +13,10 @@ const  App = _=>
            
               <Provider store={Store}>
                  <BrowserRouter basename={window.location.pathname || ''}>
-                 <Route exact path="/" component={Init} />
+                               <Switch>
+                                        <Route  exact path="/" component={Init} />
+                                        <Route  path="/receipt" component={Receipt} />     
+                                </Switch> 
                  </BrowserRouter>
 
               </Provider>

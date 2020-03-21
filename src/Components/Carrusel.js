@@ -10,7 +10,7 @@ const Carrusel = ({imgs,fetchImgs}) =>{
 
    useEffect(() => {
        fetchImgs()
-   }, [])
+   }, [fetchImgs])
     
     return imgs.loading ? (
         <div>...loading</div>

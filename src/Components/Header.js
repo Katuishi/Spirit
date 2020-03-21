@@ -2,11 +2,13 @@ import React ,{useRef}from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import {connect} from 'react-redux';
-import { ActionReducer } from "../Redux/ActionReducer";
+import { fetchSearchPost} from '../Redux/FetchAction';
 
-const Header  = ({searchDrink}) =>
+const Header  = ({fetchSearchPost}) =>
 {
-    const drink = useRef("")
+    const post = useRef("")
+   
+    
   
     return(
         <div className='nav'>
@@ -16,8 +18,8 @@ const Header  = ({searchDrink}) =>
                     <p className="title">SPIRIT</p>
                 </div>
                 <div className="search">
-                    <input type="text" ref={drink} className="drink" placeholder="Search"></input>
-                    <button className="btn"  onClick={()=> searchDrink(drink.current) }><FontAwesomeIcon icon={faSearch}/></button>
+                    <input type="text" ref={post} className="drink" placeholder="Search"></input>
+                    <button className="btn"  onClick={()=> fetchSearchPost(post.current.value) }><FontAwesomeIcon icon={faSearch}/></button>
                 </div>
                     
             </div>
@@ -29,11 +31,8 @@ const Header  = ({searchDrink}) =>
 
 
 const mapsDispatchToProps = (dispatch) =>({
-    searchDrink(drink){
-        dispatch({
-            type:ActionReducer.SEARCH_DRINK,
-            data:drink
-        })
+    fetchSearchPost(post){
+        dispatch(fetchSearchPost(post))
     }
 })
 

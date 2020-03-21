@@ -6,33 +6,32 @@ import { connect} from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { fetchPosts} from '../Redux/FetchAction'
 import  Carrusel from '../../src/Components/Carrusel'
-import  {CSSTransition} from 'react-transition-group'
 
 
 
 
-const Init = ({posts,fetchPosts}) =>
+const Init = ({posts,carrusel,fetchPosts}) =>
 {
    
      useEffect(()=>{
          fetchPosts();
-    },[])
+    },[fetchPosts])
     
    
         return(
            <div>
                <Header/>
-               {/* <Carrusel/> */}
+                {
+                   carrusel.visible ?  (<Carrusel/>):(<div></div>)
+                }
                <div className="container-post">
                     {  posts.loading ? (<div>...loading </div>):
                         (
-                            posts.data.map(x=>{
+                            posts.data.map((data,index)=>{
                                 return(
-                                    <CSSTransition 
-                                        transitionName="example">
-                                        <Post key={x.id }data={x}/>
+                                        
+                                        <Post key={index }data={data}/>
 
-                                    </CSSTransition>
                                 )
                             })
                         )
@@ -48,7 +47,8 @@ const Init = ({posts,fetchPosts}) =>
 }
 
 const mapStateToProps = state =>({
-    posts:state.post
+    posts:state.post,
+    carrusel:state.carrusel
 })
 const mapDispatchToProps = dispatch =>({
     fetchPosts(){

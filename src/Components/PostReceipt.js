@@ -1,37 +1,9 @@
+
 import React from 'react';
-import axios from 'axios';
-class Receipt extends React.Component
+
+const PostReceipt = (data)=>
 {
-    state = {
-        receipt:{
-            drinks:[],
-            img:[],
-            methods:[]
             
-
-        },
-       
-    }
-
-    componentDidMount()
-    {
-        
-        axios.get('http://127.0.0.1:5000/api/receipt')
-        .then(result =>  result.data
-            
-        ).then(data => {
-            this.setState({receipt:data});
-         
-        })            
-        
-    
-        
-    }
-
-
-    render()
-    {
-        
         return(
             <div className="container-receipt">
                 <div>
@@ -42,7 +14,7 @@ class Receipt extends React.Component
                         {
                             
 
-                            this.state.receipt.drinks.map((x,index)=>
+                            this.state.data.drinks.map((x,index)=>
                             {
                                 return(
                                 <p ><span>{index+1}-</span>{x.drink}</p>
@@ -54,10 +26,10 @@ class Receipt extends React.Component
                     </div>
                     <div className="methods">
                     {
-                            this.state.receipt.methods.map((data,index)=>
+                            this.state.data.methods.map((x,index)=>
                             {
                                 return(
-                                <p className=".letters-methods "><span>{index+1}-</span>{data.method}</p>
+                                <p className=".letters-methods "><span>{index+1}-</span>{x.method}</p>
                                 )
                             }
                             )
@@ -69,9 +41,6 @@ class Receipt extends React.Component
 
         
         )
-    }
-
-
-
+    
 }
-export default Receipt
+export default PostReceipt

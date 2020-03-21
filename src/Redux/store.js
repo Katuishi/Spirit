@@ -14,7 +14,11 @@ const initateState = {
         data:[],
         loading:false,
         error:''
-    }
+    },
+    carrusel:{
+        visible:true
+    },
+    receipt:[]
 }
 
 
@@ -23,12 +27,16 @@ const drinkReducer = (state =  initateState, action)=>
     switch (action.type) {
         case ActionReducer.SEARCH_DRINK:
             return{
-                ...state
+                ...state,
+                carrusel:{
+                    visible:false
+                }
                 
             }
         case ActionReducer.GET_DRINKS:
             return{
-                ...state
+                ...state,
+                receipt:action.payload
             }
         // state post
         case ActionReducer.FETCH_POST_REQUEST:
@@ -82,6 +90,38 @@ const drinkReducer = (state =  initateState, action)=>
             return{
                     ...state,
                     img:{
+                        data:[],
+                        loading:false,
+                        error:action.payload
+                    }
+                    
+            }
+            //state search
+            case ActionReducer.FETCH_SEARCH_POST_REQUEST:
+                return{
+                    ...state,
+                    post:{
+                        loading:true,
+                    },
+                    carrusel:{
+                        visible:false
+                    }
+                    
+            }
+            case ActionReducer.FETCH_SEARCH_POST_SUCCESS:
+                return{
+                    ...state,
+                    post:{
+                        data:action.payload,
+                        loading:false,
+                        error:''
+                    }
+    
+            }
+            case ActionReducer.FETCH_SEARCH_POST_FAILURE:
+                return{
+                    ...state,
+                    post:{
                         data:[],
                         loading:false,
                         error:action.payload
