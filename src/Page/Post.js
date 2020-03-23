@@ -1,11 +1,11 @@
 import React ,{}from 'react';
-import Header from '../Components/Header';
+import Header from "../../src/Components/Header";
 import { Footer } from '../Components/Footer';
 import { connect } from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import { fetchReceipt} from '../Redux/FetchAction'
 
-const Receipt = ({receipt,fetchReceipt}) =>{
+const Post = ({receipt,fetchReceipt}) =>{
     
     // useEffect(() => {
     //     fetchReceipt()
@@ -34,5 +34,5 @@ const mapDispatchToProps = dispatch =>({
         dispatch(fetchReceipt())
     }
 })
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Receipt))
+export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Post))
     

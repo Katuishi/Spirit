@@ -3,30 +3,22 @@ import Init from './Page/Init';
 import { Provider } from "react-redux";
 import { Store } from './Redux/store';
 import {BrowserRouter,Route,Switch } from 'react-router-dom'
-import Receipt from './Page/Receipt';
+import Post from './Page/Post';
+
 
 const  App = _=>
 {
-    
-      return(
-      
-           
+      return(    
               <Provider store={Store}>
                  <BrowserRouter basename={window.location.pathname || ''}>
                                <Switch>
-                                        <Route  exact path="/" component={Init} />
-                                        <Route  path="/receipt" component={Receipt} />     
+                                        <Route  exact path="/:id?" component={Init} />
+                                        <Route   path="/post" component={Post} />     
                                 </Switch> 
                  </BrowserRouter>
-
               </Provider>
-        
       );
-    
  }
-  
-    
-   
 export default App;
 
     

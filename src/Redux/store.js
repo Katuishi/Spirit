@@ -25,11 +25,18 @@ const initateState = {
 const drinkReducer = (state =  initateState, action)=>
 {
     switch (action.type) {
+        case ActionReducer.CHANGE_VISIBILITY_CAROUSEL:
+            return{
+                ...state,
+                carrusel:{
+                    visible:!state.carrusel.visible
+                }
+            }
         case ActionReducer.SEARCH_DRINK:
             return{
                 ...state,
                 carrusel:{
-                    visible:false
+                    visible:!state.carrusel.visible
                 }
                 
             }

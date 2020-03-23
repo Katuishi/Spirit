@@ -40,9 +40,10 @@
     margin: 8px;
 }
 .logo{
-    display: flex;
-    font-size: 30px;
-    justify-content: safe;
+    /* display: flex; */
+    width: 100px;
+    height: 100px;
+    /* justify-content: safe; */
 
 }
 

@@ -1,13 +1,13 @@
 import React  from 'react';
 import { Link} from 'react-router-dom'
 
-export const Post = (data) => 
+export const Item = (data) => 
 {
 
     
         return(
-            <section >
-                <Link to={"/receipt:"+data.key} > 
+            <section>
+                <Link to={"/post/"+data.data.key} > 
                 
                     <div className="post">
                         <div className="post-upper">

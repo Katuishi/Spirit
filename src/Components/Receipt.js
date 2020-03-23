@@ -1,20 +1,20 @@
 
 import React from 'react';
 
-const PostReceipt = (data)=>
+const Receipt = (data)=>
 {
             
         return(
             <div className="container-receipt">
                 <div>
-                    <img src={this.state.receipt.img} aria-hidden width="200" height="200" alt=""/>
+                    <img src={data.receipt.img} aria-hidden width="200" height="200" alt=""/>
                 </div>
                 <div className="methods-drinks">
                     <div className="drinks">
                         {
                             
 
-                            this.state.data.drinks.map((x,index)=>
+                            data.drinks.map((x,index)=>
                             {
                                 return(
                                 <p ><span>{index+1}-</span>{x.drink}</p>
@@ -26,7 +26,7 @@ const PostReceipt = (data)=>
                     </div>
                     <div className="methods">
                     {
-                            this.state.data.methods.map((x,index)=>
+                            data.methods.map((x,index)=>
                             {
                                 return(
                                 <p className=".letters-methods "><span>{index+1}-</span>{x.method}</p>
@@ -43,4 +43,4 @@ const PostReceipt = (data)=>
         )
     
 }
-export default PostReceipt
+export default Receipt
