@@ -1,35 +1,34 @@
 
 import React from 'react';
 
-const Receipt = (data)=>
+const Recipe = (props)=>
 {
             
         return(
             <div className="container-receipt">
+                <p className="title-recipe">{props.data.title}</p>
                 <div>
-                    <img src={data.receipt.img} aria-hidden width="200" height="200" alt=""/>
+                    <img src={props.data.img} aria-hidden width="400" height="400" alt=""/>
                 </div>
                 <div className="methods-drinks">
                     <div className="drinks">
+                        <p className="title-recipe">Ingredients</p>
                         {
-                            
-
-                            data.drinks.map((x,index)=>
+                            props.data.drinks.map((x,index)=>
                             {
                                 return(
-                                <p ><span>{index+1}-</span>{x.drink}</p>
+                                <p className="letter-recipe"><span>{index+1}-</span>{x.drink}</p>
                                 )
-                            }
-                            )
-                            
+                            })
                         }
                     </div>
                     <div className="methods">
-                    {
-                            data.methods.map((x,index)=>
+                    <p className="title-recipe">Methods</p>
+                        {
+                            props.data.methods.map((x,index)=>
                             {
                                 return(
-                                <p className=".letters-methods "><span>{index+1}-</span>{x.method}</p>
+                                <p className="letter-recipe"><span>{index+1}-</span>{x.method}</p>
                                 )
                             }
                             )
@@ -37,10 +36,6 @@ const Receipt = (data)=>
                     </div>
                 </div>
             </div>
-                
-
-        
         )
-    
 }
-export default Receipt
+export default Recipe

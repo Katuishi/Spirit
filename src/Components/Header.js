@@ -6,7 +6,7 @@ import {useHistory,Link} from 'react-router-dom'
 import icon from "../iconpage.svg"
 import { ActionReducer} from '../Redux/ActionReducer'
 
-const Header  = ({changeVisibiliryCarousel}) =>
+const Header  = ({receipt,changeVisibiliryCarousel}) =>
 {
     const post = useRef("")
     let history = useHistory()
@@ -29,12 +29,18 @@ const Header  = ({changeVisibiliryCarousel}) =>
     ); 
 } 
 
+
+const mapsStateToProps = (state)=>({
+    receipt: state.receipt
+})
+
 const mapsDispatchToProps = (dispatch) =>({
     changeVisibiliryCarousel()
     {
         dispatch({
-            type:ActionReducer.CHANGE_VISIBILITY_CAROUSEL
+            type:ActionReducer.CHANGE_VISIBILITY_CAROUSEL,
+            payload:true
         })
     }
 })
-export default connect(null,mapsDispatchToProps)(Header) ;
+export default connect(mapsStateToProps,mapsDispatchToProps)(Header) ;

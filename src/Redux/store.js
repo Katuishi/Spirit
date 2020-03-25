@@ -18,7 +18,11 @@ const initateState = {
     carrusel:{
         visible:true
     },
-    receipt:[]
+    recipe:{
+        data:[],
+        loading:false,
+        error:''
+    }
 }
 
 
@@ -29,16 +33,8 @@ const drinkReducer = (state =  initateState, action)=>
             return{
                 ...state,
                 carrusel:{
-                    visible:!state.carrusel.visible
+                    visible:action.payload
                 }
-            }
-        case ActionReducer.SEARCH_DRINK:
-            return{
-                ...state,
-                carrusel:{
-                    visible:!state.carrusel.visible
-                }
-                
             }
         case ActionReducer.GET_DRINKS:
             return{
@@ -52,7 +48,6 @@ const drinkReducer = (state =  initateState, action)=>
                 post:{
                     loading:true,
                 }
-                
             }
         case ActionReducer.FETCH_POST_SUCCESS:
             return{
@@ -62,7 +57,6 @@ const drinkReducer = (state =  initateState, action)=>
                     loading:false,
                     error:''
                 }
-
             }
         case ActionReducer.FETCH_POST_FAILURE:
             return{
@@ -103,7 +97,7 @@ const drinkReducer = (state =  initateState, action)=>
                     }
                     
             }
-            //state search
+            //state search post
             case ActionReducer.FETCH_SEARCH_POST_REQUEST:
                 return{
                     ...state,
@@ -135,6 +129,34 @@ const drinkReducer = (state =  initateState, action)=>
                     }
                     
             }
+            //state get recipe
+            case ActionReducer.FETCH_GET_RECIPE_REQUEST:
+                return{
+                    ...state,
+                    recipe:{
+                        loading:true,
+                    }
+            }
+            case ActionReducer.FETCH_GET_RECIPE_SUCCESS:
+                return{
+                    ...state,
+                    recipe:{
+                        data:action.payload,
+                        loading:false,
+                        error:''
+                    }
+    
+            }
+            case ActionReducer.FETCH_GET_RECIPE_FAILURE:
+                return{
+                    ...state,
+                    recipe:{
+                        data:[],
+                        loading:false,
+                        error:action.payload
+                    }
+                    
+            }
             
         default: return state;
     }
@@ -142,5 +164,7 @@ const drinkReducer = (state =  initateState, action)=>
 
 export const Store = createStore(
     drinkReducer,
-    compose(applyMiddleware(thunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+    compose(    
+        applyMiddleware(thunk),
+        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()),
     );

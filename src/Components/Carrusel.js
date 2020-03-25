@@ -25,7 +25,9 @@ const Carrusel = ({imgs,fetchImgs}) =>{
                         showIndicators={true}
                         infiniteLoop={true}
                         interval={9000}
-                        stopOnHover={true} >
+                        stopOnHover={true} 
+                        dynamicHeight={true}
+                        >
 
                         {
                             imgs.data.map((x,index)=> 

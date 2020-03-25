@@ -1,11 +1,11 @@
 import React,{useEffect} from 'react';
-import Header from "../../src/Components/Header";
-import {Footer} from "../../src/Components/Footer";
-import {Item} from "../../src/Components/Item"
+import Header from "../Components/Header";
+import {Footer} from "../Components/Footer";
+import {Item} from "../Components/Item"
 import { connect} from 'react-redux';
 import {withRouter,useLocation} from 'react-router-dom';
 import { fetchPosts, fetchSearchPost} from '../Redux/FetchAction'
-import  Carrusel from '../../src/Components/Carrusel'
+import  Carrusel from '../Components/Carrusel'
 import queryString from 'query-string'
 // import { ActionReducer } from '../Redux/ActionReducer';
 
@@ -22,7 +22,6 @@ const Init = ({posts,carrusel,fetchPosts,fetchSearchPost}) =>
     const getUrlParameter = (data,key) =>
     {
         var result =  queryString.parse(data)
-        console.log(result[key])
         return result[key]
     }
     
@@ -30,13 +29,12 @@ const Init = ({posts,carrusel,fetchPosts,fetchSearchPost}) =>
    
      useEffect(()=>{
          getUrlParameter(search,'id') ? fetchSearchPost(getUrlParameter(search,'id')):fetchPosts()
-        fetchPosts()
     },[fetchPosts,fetchSearchPost,search])
     
         return(
            <div>
                <Header/>
-                {console.log(search)}
+                
                 {
                    carrusel.visible ?  (<Carrusel/>):(<div></div>)
                 }

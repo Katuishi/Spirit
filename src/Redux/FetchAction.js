@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { ActionReducer } from './ActionReducer'
 
-export const fetchSearchPost = (post) => {
+export const fetchSearchPost = (id) => {
   return (dispatch) => {
     dispatch(fetchSearchPostRequest())
     axios.get('http://127.0.0.1:5000/api/postid',{
       params: {
-        post: post
+        post: id
       }
     })
       .then(response => {
@@ -18,23 +18,19 @@ export const fetchSearchPost = (post) => {
   }
 }
 
-export const fetchReceipt = (id) => {
+export const fetchGetRecipe = (id) => {
   return (dispatch) => {
-    dispatch(fetchSearchPostRequest())
-    axios.get('http://127.0.0.1:5000/api/receipt',{
-      params: {
-        receiptid: id
-      }
-    })
+    //TODO: USE PAREMETER
+    dispatch(fetchGetRecipeRequest())
+    axios.get('http://127.0.0.1:5000/api/recipe')
       .then(response => {
-        dispatch(fetchSearchPostSuccess(response.data))
+        dispatch(fetchGetRecipeSuccess(response.data))
       })
       .catch(error => {
-        dispatch(fetchSearchPostFailure(error.message))
+        dispatch(fetchGetRecipeFailure(error.message))
       })
   }
 }
-
 export const fetchPosts = () => {
   return (dispatch) => {
     dispatch(fetchPostRequest())
@@ -62,16 +58,19 @@ export const fetchImgs = () => {
   }
 }
 
+//dispacthes
+
+
 export const fetchPostRequest = () => {
   return {
     type: ActionReducer.FETCH_POST_REQUEST
   }
 }
 
-export const fetchPostSuccess = posts => {
+export const fetchPostSuccess = data => {
   return {
     type: ActionReducer.FETCH_POST_SUCCESS,
-    payload: posts
+    payload: data
   }
 }
 
@@ -88,10 +87,10 @@ export const fetchImgRequest = () => {
   }
 }
 
-export const fetchImgSuccess = imgs => {
+export const fetchImgSuccess = data => {
   return {
     type: ActionReducer.FETCH_IMG_SUCCESS,
-    payload: imgs
+    payload: data
   }
 }
 
@@ -108,10 +107,10 @@ export const fetchSearchPostRequest = () => {
   }
 }
 
-export const fetchSearchPostSuccess = posts => {
+export const fetchSearchPostSuccess = data => {
   return {
     type: ActionReducer.FETCH_SEARCH_POST_SUCCESS,
-    payload: posts
+    payload: data
   }
 }
 
@@ -121,3 +120,25 @@ export const fetchSearchPostFailure = error => {
     payload: error
   }
 }
+
+export const fetchGetRecipeRequest = () => {
+  return {
+    type: ActionReducer.FETCH_GET_RECIPE_REQUEST
+  }
+}
+
+export const fetchGetRecipeSuccess = data => {
+  return {
+    type: ActionReducer.FETCH_GET_RECIPE_SUCCESS,
+    payload: data
+  }
+}
+
+export const fetchGetRecipeFailure = error => {
+  return {
+    type: ActionReducer.FETCH_GET_RECIPE_FAILURE,
+    payload: error
+  }
+}
+
+//#endregion
