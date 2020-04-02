@@ -5,18 +5,23 @@ import { Provider } from "react-redux";
 import { Store } from './Redux/store';
 import {BrowserRouter,Route,Switch } from 'react-router-dom'
 import {Error404} from '../src/Components/Error404'
+import Default from './Layouts/Default'
 
 
 const  App = _=>
 {
       return(    
               <Provider store={Store}>
+
                  <BrowserRouter basename={window.location.pathname || ''}>
-                               <Switch>
+                         <Default>
+                                 <Switch>
                                         <Route  exact path="/" component={Init} />
                                         <Route  exact path="/post/:id" component={Post} />   
                                         <Route exact path="*" component={Error404}/>
                                 </Switch> 
+                         </Default>
+                                        
                  </BrowserRouter>
               </Provider>
       );
