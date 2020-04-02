@@ -1,6 +1,4 @@
 import React,{useEffect} from 'react';
-import Header from "../Components/Header";
-import {Footer} from "../Components/Footer";
 import {Item} from "../Components/Item"
 import { connect} from 'react-redux';
 import {withRouter,useLocation} from 'react-router-dom';
@@ -33,7 +31,6 @@ const Init = ({posts,carrusel,fetchPosts,fetchSearchPost}) =>
     
         return(
            <div>
-               <Header/>
                 
                 {
                    carrusel.visible ?  (<Carrusel/>):(<div></div>)
@@ -49,7 +46,6 @@ const Init = ({posts,carrusel,fetchPosts,fetchSearchPost}) =>
                         )
                     }
                 </div> 
-               <Footer/>
            </div>
            
         ); 

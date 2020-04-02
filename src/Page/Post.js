@@ -1,6 +1,5 @@
 import React ,{useEffect}from 'react';
-import Header from "../Components/Header"
-import { Footer } from '../Components/Footer';
+
 import { connect } from 'react-redux'
 import {withRouter,useParams } from 'react-router-dom'
 import { fetchGetRecipe} from '../Redux/FetchAction'
@@ -19,7 +18,6 @@ const Post = ({recipe,fetchGetRecipe}) =>{
     return(
         <div>
             {console.log(recipe)}
-            <Header/>
             {
                 recipe.loading ?  (<div>...loding</div>):
                 (
@@ -31,7 +29,6 @@ const Post = ({recipe,fetchGetRecipe}) =>{
                 )
             }
 
-            <Footer/>
         </div>
         
     )
