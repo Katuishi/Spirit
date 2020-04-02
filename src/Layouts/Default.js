@@ -4,12 +4,10 @@ import {Footer} from '../Components/Footer'
 const Default= (props) =>{
     return(
         <div>
-        <Header/>
-            {props.children}
-        <Footer/>
-        </div>
-    
-        
+            <Header/>
+                {props.children}
+            <Footer/>
+        </div>    
     )
 } 
 
