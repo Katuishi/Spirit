@@ -7,7 +7,10 @@ export const Item = (props) =>
     
         return(
             <section>
-                <Link to={"/post/"+props.data.key} > 
+                <Link to={{
+                    pathname:"/post/"+props.data.id,
+                    
+                    }} > 
                 
                     <div className="post">
                         <div className="post-upper">
