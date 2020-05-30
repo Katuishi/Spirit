@@ -8,22 +8,22 @@ import {Error404} from '../src/Components/Error404'
 import Default from './Layouts/Default'
 
 
-const  App = _=>
+const  App = _ =>
 {
       return(    
-              <Provider store={Store}>
+             
 
                  <BrowserRouter basename={window.location.pathname || ''}>
                          <Default>
                                  <Switch>
-                                        <Route  exact path="/" component={Init} />
-                                        <Route  exact path="/post/:id" component={Post} />   
-                                        <Route exact path="*" component={Error404}/>
+                                        <Route exact path="/" component={Init} />
+                                        <Route path="/post/:id" component={Post} />   
+                                        <Route path="*" component={Error404}/>
                                 </Switch> 
                          </Default>
                                         
                  </BrowserRouter>
-              </Provider>
+           
       );
  }
 export default App;

@@ -1,10 +1,8 @@
 import React ,{useEffect}from 'react';
-import { connect } from 'react-redux'
-import {withRouter,useParams } from 'react-router-dom'
-import { fetchGetRecipe} from '../Redux/FetchAction'
+import {useParams } from 'react-router-dom'
 import Recipe from '../Components/Recipe'
 
-const Post = ({recipe,fetchGetRecipe}) =>{
+const Post = () =>{
     
     const params = useParams()
     
@@ -34,13 +32,5 @@ const Post = ({recipe,fetchGetRecipe}) =>{
 }
 
 
-const mapStateToProps = state =>({
-    recipe:state.recipe
-})
-const mapDispatchToProps = dispatch =>({
-    fetchGetRecipe(id){
-        dispatch(fetchGetRecipe(id))
-    }
-})
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Post))
+
     

@@ -1,8 +1,6 @@
 import React,{useEffect} from 'react';
 import {Item} from "../Components/Item"
-import { connect} from 'react-redux';
-import {withRouter,useLocation} from 'react-router-dom';
-import { fetchPosts, fetchSearchPost} from '../Redux/FetchAction'
+import {useLocation} from 'react-router-dom';
 import  Carrusel from '../Components/Carrusel'
 import queryString from 'query-string'
 // import { ActionReducer } from '../Redux/ActionReducer';
@@ -12,7 +10,7 @@ import queryString from 'query-string'
 
 
 
-const Init = ({posts,carrusel,fetchPosts,fetchSearchPost}) =>
+export const Init = () =>
 {
 
     let {search}= useLocation()
@@ -23,11 +21,9 @@ const Init = ({posts,carrusel,fetchPosts,fetchSearchPost}) =>
         return result[key]
     }
     
-
-   
-     useEffect(()=>{
-         getUrlParameter(search,'id') ? fetchSearchPost(getUrlParameter(search,'id')):fetchPosts()
-    },[fetchPosts,fetchSearchPost,search])
+    // useEffect(()=>{
+    //      getUrlParameter(search,'id') ? fetchSearchPost(getUrlParameter(search,'id')):fetchPosts()
+    // },[fetchPosts,fetchSearchPost,search])
     
         return(
            <div>
@@ -51,23 +47,10 @@ const Init = ({posts,carrusel,fetchPosts,fetchSearchPost}) =>
         ); 
 }
 
-const mapStateToProps = state =>({
-    posts:state.post,
-    carrusel:state.carrusel
-})
-const mapDispatchToProps = dispatch =>({
-    fetchPosts(){
-        dispatch(fetchPosts())
-    },
-
-    fetchSearchPost(post){
-        dispatch(fetchSearchPost(post))
-    },
-
-   
-})
-
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Init))
 
 
 
+
+
+
+`   `
